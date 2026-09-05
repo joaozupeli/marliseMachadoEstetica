@@ -1,0 +1,364 @@
+/* =========================================================
+   Marlise Machado Estética — soft pink / floral (LIGHT)
+   Intimate skin-care. Serifa de display, sans, mono.
+   ========================================================= */
+
+:root {
+  --paper: #fdf7f9;
+  --paper-2: #f8eef2;
+  --paper-3: #f0dde6;
+  --ink: #2c1f24;
+  --ink-2: #3f2d34;
+  --green: #9a5f73;
+  --green-2: #b0788a;
+  --clay: #e091a8;
+  --clay-2: #ebadc0;
+  --clay-soft: #f3c9d6;
+  --sage: #e8d0da;
+
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --fg-soft: rgba(44, 31, 36, 0.62);
+  --fg-faint: rgba(44, 31, 36, 0.38);
+  --line: rgba(44, 31, 36, 0.14);
+  --surface: rgba(255, 255, 255, 0.55);
+  --accent: var(--clay);
+
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --display-xl: clamp(3.2rem, 1rem + 10.5vw, 9.5rem);
+  --display-lg: clamp(2.6rem, 1rem + 7vw, 6rem);
+  --display-md: clamp(2.1rem, 1.1rem + 4.4vw, 4.25rem);
+  --display-sm: clamp(1.6rem, 1.1rem + 2.2vw, 2.5rem);
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --text-lg: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  --text-xl: clamp(1.3rem, 1.1rem + 0.9vw, 1.75rem);
+
+  --container: 1320px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --header-h: 76px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-swift: cubic-bezier(0.65, 0, 0.35, 1);
+
+  color-scheme: light;
+}
+
+.theme-dark {
+  --bg: var(--ink);
+  --fg: var(--paper);
+  --fg-soft: rgba(253, 247, 249, 0.64);
+  --fg-faint: rgba(253, 247, 249, 0.4);
+  --line: rgba(253, 247, 249, 0.16);
+  --surface: rgba(255, 255, 255, 0.05);
+  --accent: var(--clay-soft);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* O scroll suave é feito pelo Lenis; o nativo brigaria com ele. */
+  scroll-behavior: auto !important;
+  -webkit-text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  /* `clip` corta o excesso sem virar um contêiner de rolagem, ao contrário de
+     `hidden`, que atrapalha o Lenis e quebra `position: sticky`. */
+  overflow-x: clip;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+::selection {
+  background: var(--clay);
+  color: var(--paper);
+}
+
+/* ---------- textura de papel ---------- */
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
+}
+
+/* ---------- estrutura ---------- */
+
+.container {
+  width: min(100% - (var(--gutter) * 2), var(--container));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  background: var(--bg);
+  color: var(--fg);
+  padding-block: clamp(4.5rem, 10vw, 9rem);
+}
+
+.section--flush {
+  padding-block: 0;
+}
+
+.rule {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--line);
+}
+
+/* ---------- tipografia ---------- */
+
+.display {
+  font-family: var(--font-display);
+  font-size: var(--display-md);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+.display em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: var(--fg-soft);
+  max-width: 46ch;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Cada linha quebrada pelo SplitText sobe por trás de uma máscara. */
+.split-line {
+  padding-bottom: 0.12em;
+}
+
+/* ---------- botões ---------- */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid var(--fg);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.45s var(--ease), border-color 0.45s var(--ease);
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fg);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.45s var(--ease);
+}
+
+.btn:hover::after,
+.btn:focus-visible::after {
+  transform: scaleY(1);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  color: var(--bg);
+}
+
+.btn--solid {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: var(--paper);
+}
+
+.btn--solid::after {
+  background: var(--ink);
+}
+
+.btn--solid:hover,
+.btn--solid:focus-visible {
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Link com sublinhado que se desenha da esquerda para a direita. */
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-bottom: 0.3rem;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease);
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- acessibilidade ---------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 1000;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
